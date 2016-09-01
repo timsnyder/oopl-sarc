@@ -1,6 +1,7 @@
 .DEFAULT_GOAL := test
 
-FILES :=
+FILES :=                    \
+    Count
 
 ifeq ($(shell uname), Darwin)                                        # Apple
     CXX          := g++

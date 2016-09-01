@@ -112,6 +112,11 @@ sync:
     --include "Functions.c++"                \
     --exclude "*"                            \
     ../../examples/c++/ examples
+	@rsync -r -t -u -v --delete              \
+    --include "Count.c++"                    \
+    --include "Count.h"                      \
+    --exclude "*"                            \
+    ../../exercises/c++/ exercises
 
 test:
 	make clean
