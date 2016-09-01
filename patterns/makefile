@@ -1,9 +1,8 @@
 .DEFAULT_GOAL := test
 
-FILES :=            \
-    InitializerList \
-    Initializations \
-    Functions
+FILES :=             \
+    StrategyPattern1 \
+    StrategyPattern2
 
 ifeq ($(shell uname), Darwin)                                        # Apple
     CXX          := g++
@@ -56,7 +55,7 @@ else                                                                 # UTCS
 endif
 
 %.app: %.c++
-	$(CXX) $(CXXFLAGS) $< -o $@
+	$(CXX) $(CXXFLAGS) $(GCOVFLAGS) $< -o $@ $(LDFLAGS)
 ifneq ($(shell uname -p), unknown)                       # Docker
 	-$(CLANG-CHECK) -extra-arg=-std=c++11          $< --
 	-$(CLANG-CHECK) -extra-arg=-std=c++11 -analyze $< --
@@ -64,9 +63,13 @@ endif
 
 %.c++x: %.app
 	./$<
+	$(GCOV) -b $(<:.app=.c++) | grep -A 5 "File '$(<:.app=.c++)'"
 
 clean:
 	rm -f *.app
+	rm -f *.gcda
+	rm -f *.gcno
+	rm -f *.gcov
 	rm -f *.plist
 
 test: $(FILES:=.c++x)

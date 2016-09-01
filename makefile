@@ -54,6 +54,8 @@ clean:
 	cd examples; make clean
 	@echo
 	cd exercises; make clean
+	@echo
+	cd patterns; make clean
 
 config:
 	git config -l
@@ -93,6 +95,7 @@ push:
 	git add examples
 	git add exercises
 	git add makefile
+	git add patterns
 	git commit -m "another commit"
 	git push
 	git status
@@ -108,7 +111,9 @@ sync:
 	@rsync -r -t -u -v --delete              \
     --include "Docker.sh"                    \
     --include "InitializerList.c++"          \
+    --include "Auto.c++"                     \
     --include "Initializations.c++"          \
+    --include "SharedPtr.c++"                \
     --include "Functions.c++"                \
     --exclude "*"                            \
     ../../examples/c++/ examples
@@ -117,6 +122,11 @@ sync:
     --include "Count.h"                      \
     --exclude "*"                            \
     ../../exercises/c++/ exercises
+	@rsync -r -t -u -v --delete              \
+    --include "StrategyPattern1.c++"         \
+    --include "StrategyPattern1.h"           \
+    --exclude "*"                            \
+    ../../patterns/c++/ patterns
 
 test:
 	make clean
@@ -125,7 +135,7 @@ test:
 	@echo
 	cd exercises; make test
 	@echo
-	cd projects/collatz; make test
+	cd patterns; make test
 
 versions:
 	which make
