@@ -1,7 +1,9 @@
 .DEFAULT_GOAL := test
 
 FILES :=                    \
-    Hello                   \
+    InitializerList         \
+    Initializations         \
+    Functions
 
 ifeq ($(shell uname), Darwin)                                        # Apple
     CXX          := g++

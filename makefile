@@ -108,6 +108,8 @@ sync:
 	@rsync -r -t -u -v --delete              \
     --include "Docker.sh"                    \
     --include "InitializerList.c++"          \
+    --include "Initializations.c++"          \
+    --include "Functions.c++"                \
     --exclude "*"                            \
     ../../examples/c++/ examples
 
