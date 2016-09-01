@@ -47,6 +47,11 @@ int main () {
     }
 
     {
+//  initializer_list<int> x(2);  // error: no matching constructor for initialization of 'initializer_list<int>'
+//  initializer_list<int> x = 2; // error: no matching constructor for initialization of 'initializer_list<int>'
+    }
+
+    {
     initializer_list<int> x{2};
     vector<int>           y{2};
     vector<int>           z{x};

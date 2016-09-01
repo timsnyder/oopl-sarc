@@ -81,6 +81,9 @@ int main () {
 
     C t = {2};
     assert(&t == &t);
+
+    C u({2});
+    assert(&u == &u);
     }
 
     {
