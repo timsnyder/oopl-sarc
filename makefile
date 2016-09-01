@@ -123,6 +123,8 @@ sync:
     --exclude "*"                            \
     ../../exercises/c++/ exercises
 	@rsync -r -t -u -v --delete              \
+    --include "StrategyPattern.c++"          \
+    --include "StrategyPattern.h"            \
     --include "StrategyPattern1.c++"         \
     --include "StrategyPattern1.h"           \
     --exclude "*"                            \

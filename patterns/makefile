@@ -1,6 +1,7 @@
 .DEFAULT_GOAL := test
 
 FILES :=             \
+    StrategyPattern  \
     StrategyPattern1
 
 ifeq ($(shell uname), Darwin)                                        # Apple

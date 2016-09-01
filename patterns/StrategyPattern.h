@@ -9,28 +9,24 @@
 
 using namespace std;
 
-struct FlyingInterface {
-    virtual ~FlyingInterface () {}
-    virtual string fly () = 0;};
-
-struct QuackingInterface {
-    virtual ~QuackingInterface () {}
-    virtual string quack () = 0;};
-
 struct DuckInterface {
     virtual ~DuckInterface () {}
-    virtual string swim () = 0;};
 
+    virtual string fly   () = 0;
+    virtual string quack () = 0;
+    virtual string swim  () = 0;};
 
+struct DecoyDuck : DuckInterface {
+    string fly () {
+        return "";}
 
-struct DecoyDuck : QuackingInterface, DuckInterface {
     string quack () {
         return "decoy ducks can quack";}
 
     string swim () final {
         return "decoy ducks can swim";}};
 
-struct MallardDuck : FlyingInterface, QuackingInterface, DuckInterface {
+struct MallardDuck : DuckInterface {
     string fly () {
         return "mallard ducks can fly";}
 
@@ -41,10 +37,19 @@ struct MallardDuck : FlyingInterface, QuackingInterface, DuckInterface {
         return "mallard ducks can swim";}};
 
 struct ModelDuck : DuckInterface {
+    string fly () {
+        return "";}
+
+    string quack () {
+        return "";}
+
     string swim () final {
         return "model ducks can swim";}};
 
-struct RubberDuck : QuackingInterface, DuckInterface {
+struct RubberDuck : DuckInterface {
+    string fly () {
+        return "";}
+
     string quack () {
         return "rubber ducks can quack";}
 
