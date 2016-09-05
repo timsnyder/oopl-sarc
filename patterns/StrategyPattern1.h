@@ -1,6 +1,6 @@
-// -----------------
-// StrategyPattern.h
-// -----------------
+// ------------------
+// StrategyPattern1.h
+// ------------------
 
 #ifndef StrategyPattern_h
 #define StrategyPattern_h
@@ -9,46 +9,36 @@
 
 using namespace std;
 
-struct FlyingInterface {
-    virtual ~FlyingInterface () {}
-    virtual string fly () = 0;};
+class Movie {
+    public:
+        static const int Childrens  = 0;
+        static const int NewRelease = 1;
+        static const int Regular    = 2;
 
-struct QuackingInterface {
-    virtual ~QuackingInterface () {}
-    virtual string quack () = 0;};
+    private:
+        string _title;
+        int    _price_code;
+        int    _days_rented;
 
-struct DuckInterface {
-    virtual ~DuckInterface () {}
-    virtual string swim () = 0;};
+    public:
+        Movie (string title, int price_code, int days_rented) :
+                _title       (title),
+                _price_code  (price_code),
+                _days_rented (days_rented)
+            {}
 
+        int amount () const {
+            switch (_price_code) {
+                case Childrens :
+                    return 2 + ((_days_rented > 3) ? (_days_rented - 3) * 2 : 0);
 
+                case NewRelease :
+                    return 3 * _days_rented;
 
-struct DecoyDuck : QuackingInterface, DuckInterface {
-    string quack () {
-        return "decoy ducks can quack";}
+                case Regular :
+                    return 2 + ((_days_rented > 2) ? (_days_rented - 2) * 2 : 0);
 
-    string swim () final {
-        return "decoy ducks can swim";}};
-
-struct MallardDuck : FlyingInterface, QuackingInterface, DuckInterface {
-    string fly () {
-        return "mallard ducks can fly";}
-
-    string quack () {
-        return "mallard ducks can quack";}
-
-    string swim () final {
-        return "mallard ducks can swim";}};
-
-struct ModelDuck : DuckInterface {
-    string swim () final {
-        return "model ducks can swim";}};
-
-struct RubberDuck : QuackingInterface, DuckInterface {
-    string quack () {
-        return "rubber ducks can quack";}
-
-    string swim () final {
-        return "rubber ducks can swim";}};
+                default :
+                    return -1;}}};
 
 #endif // StrategyPattern_h

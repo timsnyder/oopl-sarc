@@ -35,7 +35,7 @@ else ifeq ($(shell uname -p), unknown)                               # Docker
     GCOVFLAGS    := -fprofile-arcs -ftest-coverage
     VALGRIND     := valgrind
     DOXYGEN      := doxygen
-    CLANG-FORMAT := clang-format
+    CLANG-FORMAT := clang-format-3.5
 else                                                                 # UTCS
     CXX          := g++-4.8
     INCLUDE      := /usr/include
@@ -114,17 +114,18 @@ sync:
     --include "Auto.c++"                     \
     --include "Initializations.c++"          \
     --include "SharedPtr.c++"                \
-    --include "Functions.c++"                \
     --exclude "*"                            \
     ../../examples/c++/ examples
 	@rsync -r -t -u -v --delete              \
     --include "Count.c++"                    \
     --include "Count.h"                      \
+    --include "Reverse.c++"                  \
+    --include "Stack.c++"                    \
+    --include "Queue.c++"                    \
+    --include "Vector1.c++"                  \
     --exclude "*"                            \
     ../../exercises/c++/ exercises
 	@rsync -r -t -u -v --delete              \
-    --include "StrategyPattern.c++"          \
-    --include "StrategyPattern.h"            \
     --include "StrategyPattern1.c++"         \
     --include "StrategyPattern1.h"           \
     --exclude "*"                            \
@@ -154,11 +155,9 @@ versions:
 	ls -ald $(INCLUDE)/gtest
 	@echo
 	ls -al $(LIB)/*gtest*
-ifneq ($(shell uname -p), unknown) # Docker
 	@echo
 	which $(CLANG-CHECK)
 	$(CLANG-CHECK) --version
-endif
 	@echo
 	which $(GCOV)
 	$(GCOV) --version
@@ -168,8 +167,6 @@ endif
 	@echo
 	which $(DOXYGEN)
 	$(DOXYGEN) --version
-ifneq ($(shell uname -p), unknown) # Docker
 	@echo
 	which $(CLANG-FORMAT)
 	$(CLANG-FORMAT) --version
-endif
