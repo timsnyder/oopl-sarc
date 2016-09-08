@@ -41,10 +41,12 @@ int main () {
 
     int j(2.0);
     assert(j == 2);
+    }
 
 //  int k{2.0};     // error: type 'double' cannot be narrowed to 'int' in initializer list [-Wc++11-narrowing]
 //  int m = {2.0};  // error: type 'double' cannot be narrowed to 'int' in initializer list [-Wc++11-narrowing]
-    }
+
+
 
     {
     A x(2);
@@ -53,12 +55,16 @@ int main () {
     A y = 2;
     assert(&y == &y);
 
-    A z{2};
-    assert(&z == &z);
+//  A z({2});         //  warning: braces around scalar initializer [-Wbraced-scalar-init]
 
     A t = {2};
     assert(&t == &t);
+
+    A u{2};
+    assert(&u == &u);
     }
+
+
 
     {
     B x(2);
@@ -66,25 +72,30 @@ int main () {
 
 //  B y = 2;          // error: no viable conversion from 'int' to 'B'
 
-    B z{2};
-    assert(&z == &z);
-
+//  B z({2});         // warning: braces around scalar initializer [-Wbraced-scalar-init]
 //  B t = {2};        // error: chosen constructor is explicit in copy-initialization
+
+    B u{2};
+    assert(&u == &u);
     }
+
+
 
     {
 //  C x(2);           // error: no matching constructor for initialization of 'C'
 //  C y = 2;          // error: no viable conversion from 'int' to 'C'
 
-    C z{2};
+    C z({2});
     assert(&z == &z);
 
     C t = {2};
     assert(&t == &t);
 
-    C u({2});
+    C u{2};
     assert(&u == &u);
     }
+
+
 
     {
     D x(2);
@@ -99,6 +110,8 @@ int main () {
     D t = {2};
     assert(&t == &t);
     }
+
+
 
     {
     vector<int> x(2);

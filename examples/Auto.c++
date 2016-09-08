@@ -20,30 +20,32 @@ int main () {
 
     {
     int i = 2;
-    assert(i == 2);
+    assert(i         == 2);
+    assert(sizeof(i) == sizeof(int));
 
     auto j = 2;
-    assert(j == 2);
+    assert(j         == 2);
+    assert(sizeof(j) == sizeof(int));
     }
 
     {
     int i = 2.0;
-    assert(i == 2);
-    assert(sizeof(i) == 4); // i is an int
+    assert(i         == 2);
+    assert(sizeof(i) == sizeof(int));
 
     auto j = 2.0;
-    assert(j == 2);
-    assert(sizeof(j) == 8); // j is a double
+    assert(j         == 2);
+    assert(sizeof(j) == sizeof(double));
     }
 
     {
     int i = {2};
-    assert(i == 2);
-    assert(sizeof(i) == 4);                      // i is an int
+    assert(i         == 2);
+    assert(sizeof(i) == sizeof(int));
 
     auto j = {2};
     assert(equal(begin(j), end(j), begin({2})));
-    assert(sizeof(j) == 16);                     // j is a std::initializer_list<int>
+    assert(sizeof(j) == sizeof(initializer_list<int>));
     }
 
     cout << "Done." << endl;

@@ -120,6 +120,7 @@ sync:
     --include "Count.c++"                    \
     --include "Count.h"                      \
     --include "Reverse.c++"                  \
+    --include "Reverse.h"                    \
     --include "Stack.c++"                    \
     --include "Queue.c++"                    \
     --include "Vector1.c++"                  \
