@@ -121,6 +121,8 @@ sync:
     --include "Count.h"                      \
     --include "Reverse.c++"                  \
     --include "Reverse.h"                    \
+    --include "Distance.c++"                 \
+    --include "Distance.h"                   \
     --include "Stack.c++"                    \
     --include "Queue.c++"                    \
     --include "Vector1.c++"                  \
