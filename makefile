@@ -16,7 +16,7 @@ else ifeq ($(CI), true)                                              # Travis CI
     CXX          := g++-5
     INCLUDE      := /usr/include
     CXXFLAGS     := -pedantic -std=c++11 -Wall -Weffc++
-    LIB          := /usr/lib
+    LIB          := $(PWD)/gtest
     LDFLAGS      := -lgtest -lgtest_main -pthread
     CLANG-CHECK  := clang-check
     GCOV         := gcov-5
@@ -160,7 +160,7 @@ versions:
 	ls -al $(LIB)/*gtest*
 	@echo
 	which $(CLANG-CHECK)
-	$(CLANG-CHECK) --version
+	-$(CLANG-CHECK) --version
 	@echo
 	which $(GCOV)
 	$(GCOV) --version
@@ -172,4 +172,4 @@ versions:
 	$(DOXYGEN) --version
 	@echo
 	which $(CLANG-FORMAT)
-	$(CLANG-FORMAT) --version
+	-$(CLANG-FORMAT) --version
