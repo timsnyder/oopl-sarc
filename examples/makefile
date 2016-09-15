@@ -4,7 +4,8 @@ FILES :=            \
     InitializerList \
     Auto            \
     Initializations \
-    SharedPtr
+    SharedPtr       \
+    Iterators
 
 ifeq ($(shell uname), Darwin)                                        # Apple
     CXX          := g++

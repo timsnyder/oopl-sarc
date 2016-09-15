@@ -114,6 +114,7 @@ sync:
     --include "Auto.c++"                     \
     --include "Initializations.c++"          \
     --include "SharedPtr.c++"                \
+    --include "Iterators.c++"                \
     --exclude "*"                            \
     ../../examples/c++/ examples
 	@rsync -r -t -u -v --delete              \
